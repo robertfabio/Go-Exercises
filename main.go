@@ -2,27 +2,17 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"time"
 )
 
-func ReadFile(){
-	_, err := os.Open("non_existent_file.txt")
-	if err != nil {
-		fmt.Println("Error occurred:", err)
-	} else {
-		fmt.Println("File opened successfully")
+func main() {
+	for i := 1; i <= 500; i++ {
+		go showMenssage(fmt.Sprintf("This is message number %d", i))
 	}
+
+	time.Sleep(2 * time.Second) 
 }
 
-func main() {
-	
-	defer func () {
-		if r := recover(); r != nil {
-			fmt.Println("Recovered from panic:", r)
-		}
-	}()
-
-	ReadFile()
-
-	fmt.Println("OI???????")
+func showMenssage(message string) {
+	fmt.Println(message)
 }
