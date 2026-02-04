@@ -1,18 +1,15 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
-
 func main() {
-	for i := 1; i <= 500; i++ {
-		go showMenssage(fmt.Sprintf("This is message number %d", i))
+	i := 0
+	for j := 0; j < 10000; j++ {
+		go func() {
+			i++
+		}()
 	}
-
-	time.Sleep(2 * time.Second) 
+	println(i)
 }
 
-func showMenssage(message string) {
-	fmt.Println(message)
+func changeNumber(i *int, number int) {
+	*i = number
 }
